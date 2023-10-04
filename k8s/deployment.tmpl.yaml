@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MONGO__URI
-              value: "<MONGODB_URI>"
+              value: ${MONGODB_URI}
           ports:
             - containerPort: 3000
               name: public

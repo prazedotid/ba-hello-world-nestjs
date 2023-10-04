@@ -50,6 +50,7 @@ jobs:
         run: |
           export ECR_REPOSITORY=${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
           export IMAGE_TAG=${{ env.SHORT_SHA }}
+          export MONGODB_URI=${{ secrets.MONGODB_URI }}
           envsubst < k8s/kustomization.tmpl.yaml > k8s/kustomization.yaml
-          sed -i 's|<MONGODB_URI>|${{ secrets.MONGODB_URI }}|' k8s/deployment.yaml
+          envsubst < k8s/deployment.tmpl.yaml > k8s/deployment.yaml
           kubectl kustomize k8s | kubectl apply -f -
