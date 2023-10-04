@@ -20,6 +20,12 @@ spec:
         - name: hello-world-nestjs
           image: hello-world/hello-world-nestjs
           imagePullPolicy: Always
+          env:
+            - name: MONGO__URI
+              valueFrom:
+                secretKeyRef:
+                  name: hw-secrets
+                  key: MONGODB_URI
           ports:
             - containerPort: 3000
               name: public
