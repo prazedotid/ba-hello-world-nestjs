@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-nestjs
+  namespace: k8s-github-actions
+  labels:
+    app: hello-world-nestjs
+spec:
+  type: LoadBalancer
+  selector:
+    app: hello-world-nestjs
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 3000
