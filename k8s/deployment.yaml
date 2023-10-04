@@ -22,10 +22,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MONGO__URI
-              valueFrom:
-                secretKeyRef:
-                  name: hw-secrets
-                  key: MONGODB_URI
+              value: "<MONGODB_URI>"
           ports:
             - containerPort: 3000
               name: public
