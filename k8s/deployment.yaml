@@ -7,7 +7,6 @@ metadata:
   labels:
     app: hello-world-nestjs
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: hello-world-nestjs
@@ -22,7 +21,15 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MONGO__URI
-              value: ${MONGODB_URI}
+              valueFrom:
+                secretKeyRef:
+                  key: MONGODB_URI
+                  name: hw-secrets
           ports:
             - containerPort: 3000
               name: public
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m

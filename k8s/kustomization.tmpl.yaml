@@ -1,4 +1,5 @@
 resources:
+  - hpa.yaml
   - deployment.yaml
   - namespace.yaml
   - service.yaml
